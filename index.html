@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tuto1</title>
+    <link rel="icon" href="icon.webp" type="image/x-icon">
+    
+
+<style>
+    *, *::before, *::after {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+    }
+    #img{
+        width: 100vw;
+        height: 100dvh;
+        object-fit: cover;
+        position: fixed;
+    }
+    main{
+        height: 300dvh;     
+    }
+    header {
+        background: linear-gradient(40deg, #ebbffbb1, #95fcd69c 50% );
+        width: 325px;
+        height: 325px;
+        border-radius: 1000px;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, 0);
+        z-index: 1;
+        margin-top: -200px;
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        animation-name: slideInDown;
+        animation-duration: 1500ms;
+        animation-timing-function: ease-out;
+    }
+
+    .logo {
+        width: auto;
+        height: 85px;
+        margin: 205px;
+      
+    }
+    @keyframes slideInDown {
+        from {
+            transform: translate3d(-50%,-100%, 0);
+            opacity: 0;
+        }
+        to {
+            transform: translate3d(-50%,0,0);
+            opacity: 1;
+        }
+        
+    }
+
+</style>
+
+<script type="module">
+
+    //numero de frames
+    const MAX_FRAMES = 27;
+
+    const img = document.querySelector('#img');
+
+    //calculo da altura maxima do scroll
+    let maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+
+    window.addEventListener('resize', () => {
+        maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    });
+
+    window.addEventListener('scroll', () => {
+        
+        //posicao atual do scroll
+        const scrollPosition = window.scrollY;
+
+        //calculo da porcentagem do scroll
+        const scrollFraction = (scrollPosition / maxScroll) ;
+
+        //que frame deve ser exibido
+        const frame = Math.floor(scrollFraction * MAX_FRAMES)
+        
+        //id do frame
+        const id = frame.toString().padStart(2, '0');
+
+        //src da imagem
+        img.src = `./frames/frame_${id}.jpg`;
+        // console.log(img.src);
+
+       
+    });
+</script>
+</head>
+<body>  
+    <main>
+        <header>
+            <img class="logo" src="barbie-logo.png" alt="logo" />
+        </header>
+        <img id = "img" src="./frames/frame_00.jpg" alt="gif">
+      
+    </main>
+</body>
+
+</html>
