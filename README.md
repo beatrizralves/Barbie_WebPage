@@ -1,4 +1,5 @@
 # 👸 Barbie_Webpage
+
 ## Scroll-Based Background Animation
 
 This project creates an interactive scroll-based background animation for a website using HTML, CSS, and JavaScript.
